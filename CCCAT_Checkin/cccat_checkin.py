@@ -1,6 +1,7 @@
-import requests as rr
 import json
+import datetime
 import threading
+import requests as rr
 
 
 class CCCAT_Checkin():
@@ -27,14 +28,44 @@ class CCCAT_Checkin():
         # checkin with proper cookies
         r_checkin = rr.get(self._checkin, cookies=cookies)
         # print the user and result
-        print(self.profile['email'], r_checkin.json())
+        return self.profile['email'], r_checkin.json()
+
+
+class MutliThreadPlusLog(threading.Thread):
+
+    """
+            A extended Threading class that offer multiple thread
+            run method and the feature to log the target's return
+            into a file or stdout
+    """
+
+    def __init__(self, func, stdout, mutex):
+        self.func = func
+        self.mutex = mutex
+        self.stdout = stdout
+        threading.Thread.__init__(self)
+
+    def run(self):
+        # fetch func result to log
+        msg = self.func()
+        with self.mutex:
+            print(msg, file=self.stdout)
+
 
 if __name__ == '__main__':
     profiles = None
 
+    # open the json file that contains user profile
     with open('./profiles.json', 'r') as f:
         profiles = json.load(f)
 
+    # make file object and mutex
+    file_stdout = open('cccat.log', 'a')
+    stdout_mutex = threading.Lock()
+
+    print(datetime.datetime.now().__str__(), file=file_stdout)
+
     for profile in profiles:
-        cccat = CCCAT_Checkin(profile=profile)
-        threading.Thread(target=cccat).start()
+        cccat = CCCAT_Checkin(profile=profile)    # make cccat checkin plan
+        # do that plan in multi threads
+        MutliThreadPlusLog(cccat, file_stdout, stdout_mutex).start()

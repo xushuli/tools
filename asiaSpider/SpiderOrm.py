@@ -70,6 +70,4 @@ class DB():
     def drop_db(self):
         BASEMODEL.metadata.drop_all(self.engine)
 
-
-if __name__ == '__main__':
-    db = DB()
+db = DB()

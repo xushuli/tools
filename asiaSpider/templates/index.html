@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>asia</title>
+		<script type="text/javascript" src="http://www.xushuli.cc/js/jq.js"></script>
+	</head>
+	<body>
+		<div class="app">
+			<div class="sql">
+			<textarea rows="5" cols="125" id="sql_input">{{sql}}</textarea>
+			<div>
+			<input type="button" value="confirm" onclick='location.href="/show/"+$("#sql_input").val()'>
+			</div>
+			</div>
+			<table class="content">
+				{% for item in items %}
+					<tr>
+						{% for attr in item%}
+							{% if islink(str(attr))%}
+								<td><a href="{{attr}}">{{attr}}</a></td>
+								{%else%}
+								<td>{{attr}}</td>
+								{%endif%}
+							{% endfor %}
+						</tr>
+					{% endfor%}
+				</table>
+			</div>
+		</body>
+	</html>

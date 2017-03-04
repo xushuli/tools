@@ -1,1 +1,5 @@
 CCCAT_Checkin/profiles.json
+*.db
+*.pyc
+*.csv
+*.xlsx

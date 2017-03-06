@@ -24,7 +24,8 @@ if __name__ == '__main__':
     
     objs = [Alipay(**dict(zip(tableHeader, tableRow))) for tableRow in DataReader.lines]
 
+    print('Running db add method')
+
     db.addAll(objs)
 
-    for obj in objs:
-    	print(obj.price,obj.prodName)
+    print('All Done!')

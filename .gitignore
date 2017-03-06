@@ -3,3 +3,5 @@ CCCAT_Checkin/profiles.json
 *.pyc
 *.csv
 *.xlsx
+*.pyc
+alipay_analysis/__pycache__/__init__.cpython-35.pyc

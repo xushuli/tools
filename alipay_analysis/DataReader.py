@@ -1,11 +1,13 @@
 import os
 import re
+from FilePicker import FilePicker
 from __init__ import baseDir
 
 
 class DataReader:
     f = None
     lines = []
+    filepattern = '*alipay*.csv'
     itemSep = ','
     contentPattern = '^([A-Z]*\d+.*?\t,.*?\n)'
 
@@ -15,7 +17,7 @@ class DataReader:
         cls.readLines()
 
     @classmethod
-    def readFile(cls, filepath=os.path.join(baseDir, "alipay_record_20170304_1514_1.csv")):
+    def readFile(cls, filepath=os.path.join(baseDir,FilePicker.listdirOrderByCtime(filepattern).first())):
         cls.f = open(filepath, 'r')
 
     @classmethod

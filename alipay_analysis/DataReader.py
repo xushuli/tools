@@ -17,16 +17,24 @@ class DataReader:
         cls.readLines()
 
     @classmethod
-    def readFile(cls, filepath=os.path.join(baseDir,FilePicker.listdirOrderByCtime(filepattern).first())):
-        cls.f = open(filepath, 'r')
+    def readFile(cls, filepath=None):
+        if filepath is None:
+            filepath=os.path.join(baseDir,FilePicker.listdirOrderByCtime(cls.filepattern).first())
+            print("Reading:%s"%filepath)
+        if cls.f is not None:
+            return cls.f
+        else:
+            cls.f = open(filepath, 'r')
+            return cls.f
 
     @classmethod
     def readLines(cls):
-        for line in cls.f:
+        if cls.lines != []:
+            return cls.lines
+
+        for line in cls.readFile():
             matchedSnippets = re.findall(cls.contentPattern, line)
             if matchedSnippets:
                 splitedItems = [item.strip() for item in re.split(cls.itemSep, matchedSnippets[0]) if item!='\n']    #split item from raw line
                 cls.lines.append(splitedItems)
-
-
-DataReader.main()
+        return cls.lines

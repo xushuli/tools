@@ -22,7 +22,7 @@ if __name__ == '__main__':
     # print(DataReader.lines[1])
     # DataSaver.saveTableIntoNewWorkBook(DataReader.lines,tableHeader=tableHeader)
     
-    objs = [Alipay(**dict(zip(tableHeader, tableRow))) for tableRow in DataReader.lines]
+    objs = [Alipay(**dict(zip(tableHeader, tableRow))) for tableRow in DataReader.readLines()]
 
     print('Running db add method')
 

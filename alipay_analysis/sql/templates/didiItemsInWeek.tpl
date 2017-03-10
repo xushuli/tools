@@ -1,6 +1,5 @@
-SELECT
-	*
-FROM
-	Alipay
-where julianday(date('now', 'weekday 0','{daysFromNow} days')) - julianday(tradeBeginingDate)< 6
-and tradeCounterPart like '%工商%'
+SELECT *
+FROM Alipay
+WHERE julianday(date('now', 'weekday 0','{daysFromNow} days'))+1 - julianday(tradeBeginingDate)<= 7
+  AND julianday(date('now', 'weekday 0','{daysFromNow} days')) - julianday(tradeBeginingDate) >= 0
+  AND tradeCounterPart LIKE '%工商%'

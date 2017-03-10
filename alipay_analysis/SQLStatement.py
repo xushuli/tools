@@ -43,6 +43,7 @@ class SQLStatement(object):
         self.headerName = templateName
         self.context = context
         self.formatedSQL = None
+        self.header = None
 
     def _getTemplatePath(self):
         return os.path.join(self.templatesFolder, self.templateName + self.templateExt)
@@ -57,7 +58,10 @@ class SQLStatement(object):
         return self.formatedSQL
 
     def getHeader(self):
-        return json.load(open(self._getHeaderPath(), 'r', encoding='utf-8'))
+        if self.header is None:
+            self.header = json.load(
+                open(self._getHeaderPath(), 'r', encoding='utf-8'))
+        return self.header
 
     def execute(self):
         return ExcutedResult(db.session.execute(self.getFormatedSQL()),

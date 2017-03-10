@@ -32,5 +32,8 @@ def AddCsvToDB():
     print('All Done!')
 
 if __name__ == '__main__':
-    itemsInThisWeek = SQLStatements.get('itemsInThisWeek')
-    print(itemsInThisWeek.execute().fetchone())
+    itemsInThisWeek = SQLStatements.get('everyDayExpenseInWeek')(0)
+    print(itemsInThisWeek.getFormatedSQL())
+    items =itemsInThisWeek.execute().fetchall()
+    print(len(items))
+    print(items)

@@ -38,7 +38,6 @@ class DB():
     def __init__(self):
         self.engine = self.__createEngine()
         self.session = self.__createSession(self.engine)
-
         self.init_db()
 
     def __createEngine(self):

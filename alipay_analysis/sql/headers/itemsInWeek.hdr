@@ -1,0 +1,18 @@
+[
+  "tradeId",
+  "orderyId",
+  "tradeBeginingDate",
+  "paidDate",
+  "lastModifingDate",
+  "tradeSrouce",
+  "catagory",
+  "tradeCounterPart",
+  "prodName",
+  "price",
+  "io",
+  "tradeState",
+  "servicePrice",
+  "refund",
+  "comment",
+  "fundState"
+]

@@ -3,6 +3,7 @@ from DataSaver import DataSaver
 from alipayOrm import db, Alipay
 from SQLStatements import SQLStatements
 from ShowTable import ShowTable
+import sys
 
 tableHeader = ['tradeId',
                'orderyId',
@@ -32,8 +33,17 @@ def AddCsvToDB():
     print('All Done!')
 
 if __name__ == '__main__':
-    itemsInThisWeek = SQLStatements.get('everyDayExpenseInWeek')(0)
+    try:
+        queryTemplate = sys.argv[1]
+        queryArgs = sys.argv[2:]
+        print(queryTemplate, queryArgs)
+    except IndexError as e:
+        print("没有提供参数，默认执行数据库更新操作!")
+        AddCsvToDB()
+
+    itemsInThisWeek = SQLStatements.get(queryTemplate)(*queryArgs)
+    items = itemsInThisWeek.execute().fetchall()
+
     print(itemsInThisWeek.getFormatedSQL())
-    items =itemsInThisWeek.execute().fetchall()
     print(len(items))
     print(items)

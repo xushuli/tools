@@ -1,6 +1,6 @@
 import glob
 import os
-
+from __init__ import baseDir
 
 class FileList(list):
 
@@ -31,6 +31,7 @@ class FilePicker:
 
     @classmethod
     def listdir(cls, pattern):
+        pattern = os.path.join(baseDir,pattern) #pattern under the base dir
         return FileList(glob.glob(pattern))
 
     @classmethod

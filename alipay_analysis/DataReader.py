@@ -38,3 +38,6 @@ class DataReader:
                 splitedItems = [item.strip() for item in re.split(cls.itemSep, matchedSnippets[0]) if item!='\n']    #split item from raw line
                 cls.lines.append(splitedItems)
         return cls.lines
+
+if __name__ == '__main__':
+    DataReader.readFile()

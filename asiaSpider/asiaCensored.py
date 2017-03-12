@@ -2,6 +2,7 @@ import requests as rr
 from bs4 import BeautifulSoup
 from SpiderOrm import AsiaCensored
 from SpiderOrm import DB
+import re
 
 baseLink = "http://68.168.16.151/forum/"
 asias = []
@@ -51,6 +52,8 @@ def parseOneItem(item):
             size = float(size.split('M')[0]) / 1000
         elif "GB" in size or "G" in size:
             size = float(size.split('G')[0])
+        else:
+            size = re.sub('[A-Za-z]*','',size)
     except ValueError as e:
         size = 0
 

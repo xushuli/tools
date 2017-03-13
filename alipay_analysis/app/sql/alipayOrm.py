@@ -4,7 +4,7 @@ from sqlalchemy import Column
 from sqlalchemy.types import TEXT, FLOAT, INTEGER
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from __init__ import baseDir
+from .. import baseDir
 
 DBNAME = "Alipay"
 

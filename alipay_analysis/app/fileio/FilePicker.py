@@ -1,6 +1,6 @@
 import glob
 import os
-from __init__ import baseDir
+from .. import baseDir
 
 class FileList(list):
 

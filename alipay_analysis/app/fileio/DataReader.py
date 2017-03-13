@@ -1,7 +1,7 @@
 import os
 import re
-from FilePicker import FilePicker
-from __init__ import baseDir
+from .FilePicker import FilePicker
+from .. import baseDir
 
 
 class DataReader:

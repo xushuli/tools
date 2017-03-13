@@ -1,5 +1,6 @@
 import os
-from __init__ import baseDir
+import sys
+from .. import baseDir
 from openpyxl import Workbook
 
 
@@ -50,5 +51,9 @@ class DataSaver:
 
 
 if __name__ == '__main__':
-    table = [list(range(5)) for line in range(5)]
+    # table = [list(range(5)) for line in range(5)]
+    # DataSaver.saveTableIntoNewWorkBook(table)
+    import json
+    table = json.loads(sys.stdin.read())
+    print(table)
     DataSaver.saveTableIntoNewWorkBook(table)

@@ -1,7 +1,7 @@
 import os
 import json
-from alipayOrm import db
-from __init__ import baseDir
+from .alipayOrm import db
+from .. import baseDir
 
 
 class ExcutedResult(object):
@@ -14,14 +14,14 @@ class ExcutedResult(object):
         self.executedResult = executedResult
         self.header = header
 
-    def fetchone(self):
-        if self.header is not None:
+    def fetchone(self,withHeader=True):
+        if self.header is not None and withHeader:
             return dict(zip(self.header, self.executedResult.fetchone()))
         else:
             return self.executedResult.fetchone()
 
-    def fetchall(self):
-        if self.header is not None:
+    def fetchall(self,withHeader=True):
+        if self.header is not None and withHeader:
             return [dict(zip(self.header, one))
                     for one in self.executedResult.fetchall()]
         else:
@@ -33,8 +33,8 @@ class SQLStatement(object):
     """@templateName: the sql template filename under the path of .sql/templates/
        @context: is the dict that used to fomat the template string"""
 
-    templatesFolder = os.path.join(baseDir, './sql/templates/')
-    headersFolder = os.path.join(baseDir, './sql/headers/')
+    templatesFolder = os.path.join(baseDir, 'app/sql/templates/')
+    headersFolder = os.path.join(baseDir, 'app/sql/headers/')
     templateExt = '.tpl'
     headerExt = '.hdr'
 

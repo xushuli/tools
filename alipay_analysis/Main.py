@@ -40,12 +40,13 @@ if __name__ == '__main__':
     except IndexError as e:
         print("没有提供参数，默认执行数据库更新操作!")
         AddCsvToDB()
-        queryTemplate = 'itemsInWeek'
-        queryArgs = [0,]
+        queryTemplate = 'didiEveryDayIncomeInWeek'
+        queryArgs = [1,]
 
     itemsInThisWeek = SQLStatements.get(queryTemplate)(*queryArgs)
     items = itemsInThisWeek.execute().fetchall(withHeader=False)
-
-    print(itemsInThisWeek.getFormatedSQL())
-    print(len(items))
-    print(items)
+    import json
+    print(json.dumps([[col for col in item] for item in items],ensure_ascii=False,indent=2))
+    # print(itemsInThisWeek.getFormatedSQL())
+    # print(len(items))
+    # print(items)

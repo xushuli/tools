@@ -54,6 +54,11 @@ if __name__ == '__main__':
     # table = [list(range(5)) for line in range(5)]
     # DataSaver.saveTableIntoNewWorkBook(table)
     import json
-    table = json.loads(sys.stdin.read())
-    print(table)
+    table = None
+
+    try:
+        table = json.loads(sys.stdin.read())
+    except Exception as e:
+        raise Exception("你的json有格式问题")
+
     DataSaver.saveTableIntoNewWorkBook(table)

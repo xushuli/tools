@@ -5,23 +5,18 @@
 		<columns>
 			<column id="itemCd" colIndex="0" filters="" defaultTo="next('^\d+.*')">
 				<match pattern="^[^0-9^\s]" matchTo="skipLine"></match>
-				<!-- <match pattern="实收资本\(金额\)|资产类合计:|资产资产净值:|单位净值日增长率:" matchTo="reverseSkip"></match> 
-					<match pattern="实收资本\(金额\)|资产类合计:|资产资产净值:|单位净值日增长率:" matchTo="giveItemCdToItemNm"></match> 
-					<match pattern="实收资本\(金额\)" matchTo="replace('.+','10012')"></match> <match 
-					pattern='\d*[a-zA-Z]\d*' matchTo="replace('[a-zA-Z]','')"></match> -->
+				<match pattern="实收资本\(金额\)|资产类合计:|资产资产净值:|单位净值日增长率:" matchTo="reverseSkip"></match> 
+				<match pattern="实收资本\(金额\)|资产类合计:|资产资产净值:|单位净值日增长率:" matchTo="giveItemCdToItemNm"></match> 
+				<match pattern="实收资本\(金额\)" matchTo="replace('.+','10012')"></match> 
+				<match pattern='\d*[a-zA-Z]\d*' matchTo="replace('[a-zA-Z]','')"></match>
 			</column>
-			<column id="itemNm" colIndex="1" filters="">
-			</column>
-			<!-- <column id="volume" colIndex="2" defaultValue="0"></column> -->
-			<!-- <column id="pricec" colIndex="3" defaultValue="0"></column> -->
-			<!-- <column id="cost" colIndex="4" filters="number" defaultValue="0"> -->
-			<!-- </column> -->
-			<!-- <column id="costToVnp" colIndex="5" filters="percent" -->
-			<!-- defaultValue="0"> -->
-			<!-- </column> -->
-			<!-- <column id="pricep" colIndex="7" defaultValue="0"></column> -->
-			<!-- <column id="ext4" colIndex="10" filters="tingpai"> -->
-			<!-- </column> -->
+			<column id="itemNm" colIndex="1" filters=""></column>
+			<column id="volume" colIndex="2" defaultValue="0"></column>
+			<column id="pricec" colIndex="3" defaultValue="0"></column>
+			<column id="cost" colIndex="4" filters="number" defaultValue="0"></column>
+			<column id="costToVnp" colIndex="5" filters="percent"defaultValue="0"></column>
+			<column id="pricep" colIndex="7" defaultValue="0"></column>
+			<column id="ext4" colIndex="10" filters="tingpai"></column>
 		</columns>
 	</majorSection>
 

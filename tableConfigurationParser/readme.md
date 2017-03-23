@@ -1,18 +1,18 @@
-#xls配置化解析器
-####使用配置文件描述xls文件里多样的数据格式和字段，在对符合特定格式的字符串进行处理后，自动将每一行变成java实体，最后产生一个java实体类型的Arraylist。
-####并且可以解析特定单元格，对它进行某些处理后放到收集特定点的映射表里。
+# xls配置化解析器
+#### 使用配置文件描述xls文件里多样的数据格式和字段，在对符合特定格式的字符串进行处理后，自动将每一行变成java实体，最后产生一个java实体类型的Arraylist。
+#### 并且可以解析特定单元格，对它进行某些处理后放到收集特定点的映射表里。
 
-##简要说明
+## 简要说明
 
-###match节点
-####可以放在column和specItme下，主要用于匹配符合特定模式的单元格，对他进行修改和其它操作。
+### match节点
+#### 可以放在column和specItme下，主要用于匹配符合特定模式的单元格，对他进行修改和其它操作。
 
 
 pattern 属性：模式
 matchTo 属性：符合模式要去做什么，支持函数和命令，如：giveColumnAToColumnB（如果符合某一模式把某一列columnA的值赋给列colmnB，注意：columnB的列索引不能大于ColumnA的列索引），give'value'ToColumnB（如果符合某一模式把某一个值赋给这一行的某一列），skipLine（跳过这一行不构造这一行的java实体），reverseSkip（取消跳过），find('substring')，substring('start','end')，relace('pattern','replacement')等
 
-###column节点
-####说明某列是java实体中的哪个属性，并描述需要进行哪些操作与过滤
+### column节点
+#### 说明某列是java实体中的哪个属性，并描述需要进行哪些操作与过滤
 
 
 id属性：与java实体的属性对应，id值的getter setter需要存在与java实体中。
@@ -21,15 +21,15 @@ colInex 属性：excel列索引，从0开始
 defaultValue 属性：默认值，注意需要用单引号括起'value'
 defaultTo 属性：如果没有内容，则执行命令，可用的命令有next('pattern')取符合模式的下一行作为默认值
 
-###specItem节点
-####继承于column节点
+### specItem节点
+#### 继承于column节点
 
 
 rowIndex 属性：excel行索引，从0开始
 
 
 
-##配置文件demo
+## 配置文件demo
 	<?xml version="1.0" encoding="UTF-8"?>
 	<table entity="com.guige.oim.entity.ValuationTable"
 		xlsFile="C:\\Users\\Tony\\Desktop\\20161230ori\\估值表20161230.xls">

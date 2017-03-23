@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table entity="cc.xushuli.tableConfigurationParser.userEntites.Alipay"
+	xlsFile="C:\\Users\\Tony\\Documents\\GitHub\\Tools\\alipay_analysis\\alipay_record_20170310_0910_1.xls">
+	<majorSection startIndex="4">
+		<columns>
+			<column id="tradeId" colIndex="0" filters="date">
+				<match pattern="^[^0-9].*" matchTo="skipLine"></match>
+			</column>
+			<column id="tradeDate" colIndex="2" filters="">
+			</column>
+			<column id="counterPart" colIndex="7"></column>
+		</columns>
+	</majorSection>
+</table>

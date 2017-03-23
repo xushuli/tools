@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table entity="com.guige.oim.entity.ValuationTable"
+	xlsFile="C:\\Users\\Tony\\Desktop\\20161230ori\\490040杭州银行1期1号直销专户基金资产估值表20161230.xls">
+	<majorSection startIndex="5">
+		<columns>
+			<column id="itemCd" colIndex="0" filters="" defaultTo="next('^\d+.*')">
+				<match pattern="^[^0-9^\s]" matchTo="skipLine"></match>
+				<!-- <match pattern="实收资本\(金额\)|资产类合计:|资产资产净值:|单位净值日增长率:" matchTo="reverseSkip"></match> 
+					<match pattern="实收资本\(金额\)|资产类合计:|资产资产净值:|单位净值日增长率:" matchTo="giveItemCdToItemNm"></match> 
+					<match pattern="实收资本\(金额\)" matchTo="replace('.+','10012')"></match> <match 
+					pattern='\d*[a-zA-Z]\d*' matchTo="replace('[a-zA-Z]','')"></match> -->
+			</column>
+			<column id="itemNm" colIndex="1" filters="">
+			</column>
+			<!-- <column id="volume" colIndex="2" defaultValue="0"></column> -->
+			<!-- <column id="pricec" colIndex="3" defaultValue="0"></column> -->
+			<!-- <column id="cost" colIndex="4" filters="number" defaultValue="0"> -->
+			<!-- </column> -->
+			<!-- <column id="costToVnp" colIndex="5" filters="percent" -->
+			<!-- defaultValue="0"> -->
+			<!-- </column> -->
+			<!-- <column id="pricep" colIndex="7" defaultValue="0"></column> -->
+			<!-- <column id="ext4" colIndex="10" filters="tingpai"> -->
+			<!-- </column> -->
+		</columns>
+	</majorSection>
+
+	<specItems>
+		<specItem id="dataDt" colIndex="0" rowIndex="2" filters="date"></specItem>
+			<specItem id="abb" colIndex="0" rowIndex="1">
+				<match pattern=".*" matchTo="find('__.*__')|substring('2','-2')"></match>
+			</specItem>
+	</specItems>
+
+</specItems>
+</table>

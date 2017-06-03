@@ -21,7 +21,7 @@ SQLStatements = {
         lambda week=0: SQLStatement(
             'everyDayExpenseInWeek', {'daysFromNow': -int(week) * 7}),
 
-    'totalExpenseInWeek':
+    'expenseInWeek':
         lambda week=0: SQLStatement(
-            'totalExpenseInWeek', {'daysFromNow': -int(week) * 7}),
+            'expenseInWeek', {'daysFromNow': -int(week) * 7}),
 }

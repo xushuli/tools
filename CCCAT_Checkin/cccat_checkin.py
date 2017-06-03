@@ -2,7 +2,8 @@ import json
 import datetime
 import threading
 import requests as rr
-
+import os
+baseDir = os.path.split(__file__)[0]
 
 class CCCAT_Checkin():
 
@@ -20,13 +21,21 @@ class CCCAT_Checkin():
     def __init__(self, profile):
         self.profile = profile
 
-    def __call__(self):
+    def __call__(self,useProxy = True):
+        if useProxy == True:
+            proxies = {
+              "http": "http://127.0.0.1:1080",
+              "https": "http://127.0.0.1:1080",
+            }
+        else:
+            proxies = None
+            
         # login to fetch these cookies
-        r_login = rr.post(self._login, data=self.profile)
+        r_login = rr.post(self._login, data=self.profile,timeout=10,proxies=proxies)
         # adjust these cookies represent style
         cookies = dict(r_login.cookies.items())
         # checkin with proper cookies
-        r_checkin = rr.get(self._checkin, cookies=cookies)
+        r_checkin = rr.get(self._checkin, cookies=cookies,proxies=proxies,timeout=10)
         # print the user and result
         return self.profile['email'], r_checkin.json()
 
@@ -52,15 +61,15 @@ class MutliThreadPlusLog(threading.Thread):
             print(msg, file=self.stdout)
 
 
-if __name__ == '__main__':
+def main():
     profiles = None
 
     # open the json file that contains user profile
-    with open('./profiles.json', 'r') as f:
+    with open(os.path.join(baseDir,'profiles.json'), 'r', encoding="utf-8") as f:
         profiles = json.load(f)
 
     # make file object and mutex
-    file_stdout = open('cccat.log', 'a')
+    file_stdout = open(os.path.join(baseDir,'cccat.log'), 'a')
     stdout_mutex = threading.Lock()
 
     print(datetime.datetime.now().__str__(), file=file_stdout)
@@ -69,3 +78,6 @@ if __name__ == '__main__':
         cccat = CCCAT_Checkin(profile=profile)    # make cccat checkin plan
         # do that plan in multi threads
         MutliThreadPlusLog(cccat, file_stdout, stdout_mutex).start()
+
+if __name__ == '__main__':
+    main()
